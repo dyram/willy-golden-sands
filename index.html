@@ -1652,7 +1652,7 @@
           <div class="about-grid">
             <div class="about-visual reveal">
               <div class="about-badge">
-                <div class="about-badge-year">8+</div>
+                <div class="about-badge-year" id="yearsExp"></div>
                 <div class="about-badge-text">Years<br />Experience</div>
               </div>
               <img
@@ -2359,8 +2359,8 @@
       <div class="footer-inner">
         <div class="footer-brand">Golden Sands <span>of Abu Abali</span></div>
         <p class="footer-copy">
-          © 2026 Golden Sands of Abu Abali. All rights reserved. · Al Musannah,
-          Sultanate of Oman
+          © <span id="copyrightYear"></span> Golden Sands of Abu Abali. All
+          rights reserved. · Al Musannah, Sultanate of Oman
         </p>
         <ul class="footer-links" aria-label="Footer navigation">
           <li><a href="#about">About</a></li>
@@ -2373,6 +2373,11 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script>
+      // Dynamic year calculations
+      const _year = new Date().getFullYear();
+      document.getElementById("yearsExp").textContent = _year - 2018 + "+";
+      document.getElementById("copyrightYear").textContent = _year;
+
       // Hamburger menu
       const hamburger = document.getElementById("hamburger");
       const navLinks = document.getElementById("navLinks");
