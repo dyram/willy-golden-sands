@@ -824,6 +824,296 @@
         color: var(--gold);
       }
 
+      /* ===== MASONRY GALLERY ===== */
+      #gallery {
+        padding: 120px 0;
+        background: var(--dark-2);
+      }
+      .gallery-section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 48px;
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+      .gallery-filter-bar {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+      }
+      .filter-btn {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(248, 245, 239, 0.5);
+        background: transparent;
+        border: 1px solid rgba(212, 160, 23, 0.2);
+        padding: 8px 18px;
+        border-radius: 2px;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .filter-btn:hover,
+      .filter-btn.active {
+        color: var(--dark);
+        background: var(--gold);
+        border-color: var(--gold);
+      }
+      .masonry-grid {
+        columns: 3;
+        column-gap: 16px;
+      }
+      .masonry-item {
+        break-inside: avoid;
+        margin-bottom: 16px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 2px;
+        cursor: pointer;
+        display: block;
+      }
+      .masonry-item.hidden {
+        display: none;
+      }
+      .masonry-img {
+        width: 100%;
+        display: block;
+        transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .masonry-item:hover .masonry-img {
+        transform: scale(1.06);
+      }
+      .masonry-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(17, 17, 17, 0.88) 0%,
+          rgba(17, 17, 17, 0.1) 55%,
+          transparent 100%
+        );
+        opacity: 0;
+        transition: opacity 0.35s;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 20px;
+        gap: 4px;
+      }
+      .masonry-item:hover .masonry-overlay {
+        opacity: 1;
+      }
+      .masonry-label {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+      .masonry-expand {
+        width: 28px;
+        height: 28px;
+        border: 1px solid rgba(212, 160, 23, 0.6);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        color: var(--gold);
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 0.75rem;
+      }
+      .masonry-item:hover .masonry-expand {
+        opacity: 1;
+      }
+
+      /* Pagination */
+      .gallery-pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 52px;
+      }
+      .page-btn {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 0.82rem;
+        letter-spacing: 0.1em;
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--border);
+        border-radius: 2px;
+        background: transparent;
+        color: rgba(248, 245, 239, 0.5);
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .page-btn:hover,
+      .page-btn.active {
+        border-color: var(--gold);
+        color: var(--gold);
+        background: rgba(212, 160, 23, 0.08);
+      }
+      .page-btn.active {
+        background: var(--gold);
+        color: var(--dark);
+      }
+      .page-btn:disabled {
+        opacity: 0.25;
+        cursor: not-allowed;
+      }
+      .page-arrow {
+        width: 44px;
+        height: 40px;
+      }
+      .gallery-count {
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(248, 245, 239, 0.35);
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      /* Lightbox */
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(10, 10, 10, 0.96);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+        backdrop-filter: blur(8px);
+      }
+      .lightbox.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .lightbox-img-wrap {
+        position: relative;
+        max-width: 88vw;
+        max-height: 88vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .lightbox-img {
+        max-width: 88vw;
+        max-height: 82vh;
+        object-fit: contain;
+        border-radius: 2px;
+        transform: scale(0.95);
+        transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .lightbox.open .lightbox-img {
+        transform: scale(1);
+      }
+      .lightbox-close {
+        position: fixed;
+        top: 24px;
+        right: 28px;
+        width: 44px;
+        height: 44px;
+        background: rgba(212, 160, 23, 0.12);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--gold);
+        font-size: 1.2rem;
+        transition: var(--transition);
+        z-index: 10000;
+      }
+      .lightbox-close:hover {
+        background: var(--gold);
+        color: var(--dark);
+      }
+      .lightbox-nav {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 48px;
+        height: 48px;
+        background: rgba(17, 17, 17, 0.7);
+        border: 1px solid var(--border);
+        border-radius: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--light);
+        font-size: 1.1rem;
+        transition: var(--transition);
+        z-index: 10000;
+      }
+      .lightbox-nav:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+        background: rgba(212, 160, 23, 0.1);
+      }
+      .lightbox-prev {
+        left: 20px;
+      }
+      .lightbox-next {
+        right: 20px;
+      }
+      .lightbox-caption {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 0.8rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        text-align: center;
+        z-index: 10000;
+      }
+      .lightbox-counter {
+        color: rgba(248, 245, 239, 0.35);
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        margin-top: 4px;
+      }
+
+      @media (max-width: 900px) {
+        .masonry-grid {
+          columns: 2;
+        }
+        .gallery-section-header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+      @media (max-width: 600px) {
+        .masonry-grid {
+          columns: 1;
+        }
+        .lightbox-nav {
+          display: none;
+        }
+      }
+
       /* ===== WHY CHOOSE US ===== */
       #why {
         padding: 120px 0;
@@ -1281,6 +1571,7 @@
         <li><a href="#vision">Vision</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#products">Products</a></li>
+        <li><a href="#gallery">Gallery</a></li>
         <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
       </ul>
       <button
@@ -1479,7 +1770,7 @@
             </div>
             <div class="vision-img-stack reveal">
               <img
-                src="./assets/imgs/11.png"
+                src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=700&q=80"
                 alt="GRP water storage tanks manufactured by Golden Sands of Abu Abali"
                 class="vision-img-1"
                 width="560"
@@ -1701,6 +1992,102 @@
           </div>
         </div>
       </section>
+
+      <!-- ===== MASONRY GALLERY ===== -->
+      <section id="gallery" aria-label="Full Product Gallery">
+        <div class="section-inner">
+          <div class="gallery-section-header">
+            <div>
+              <div class="section-tag reveal">
+                <div class="section-tag-line"></div>
+                <span>Gallery</span>
+              </div>
+              <h2 class="section-title reveal">
+                Our Work,<br /><span style="color: var(--gold)">Up Close</span>
+              </h2>
+            </div>
+            <p
+              class="section-lead reveal"
+              style="max-width: 320px; text-align: right"
+            >
+              Browse our full catalogue of GRP products — from infrastructure to
+              architectural finishes.
+            </p>
+          </div>
+
+          <!-- Filter Bar -->
+          <div
+            class="gallery-filter-bar reveal"
+            id="filterBar"
+            role="group"
+            aria-label="Filter gallery by category"
+          >
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="tanks">Tanks</button>
+            <button class="filter-btn" data-filter="doors">
+              Doors &amp; Cabins
+            </button>
+            <button class="filter-btn" data-filter="infra">
+              Infrastructure
+            </button>
+            <button class="filter-btn" data-filter="decor">
+              Cladding &amp; Décor
+            </button>
+          </div>
+
+          <!-- Masonry Grid -->
+          <div class="masonry-grid" id="masonryGrid" role="list">
+            <!-- Items injected by JS -->
+          </div>
+
+          <!-- Pagination -->
+          <div
+            class="gallery-pagination"
+            id="galleryPagination"
+            role="navigation"
+            aria-label="Gallery pages"
+          ></div>
+          <p class="gallery-count" id="galleryCount"></p>
+        </div>
+      </section>
+
+      <!-- Lightbox -->
+      <div
+        class="lightbox"
+        id="lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Image viewer"
+      >
+        <button
+          class="lightbox-close"
+          id="lightboxClose"
+          aria-label="Close lightbox"
+        >
+          ✕
+        </button>
+        <button
+          class="lightbox-nav lightbox-prev"
+          id="lightboxPrev"
+          aria-label="Previous image"
+        >
+          &#8592;
+        </button>
+        <div class="lightbox-img-wrap">
+          <img src="" alt="" class="lightbox-img" id="lightboxImg" />
+        </div>
+        <button
+          class="lightbox-nav lightbox-next"
+          id="lightboxNext"
+          aria-label="Next image"
+        >
+          &#8594;
+        </button>
+        <div class="lightbox-caption">
+          <div id="lightboxLabel"></div>
+          <div class="lightbox-counter" id="lightboxCounter"></div>
+        </div>
+      </div>
 
       <!-- ===== WHY CHOOSE US ===== -->
       <section id="why" aria-label="Why Choose Golden Sands">
@@ -2043,6 +2430,315 @@
           }
         });
       });
+
+      // ===== MASONRY GALLERY =====
+      const GALLERY_DATA = [
+        {
+          src: "./assets/imgs/gallery/1.jpg",
+          alt: "Sectional Panel Tank",
+          label: "Sectional Panel Tank",
+          cat: "tanks",
+        },
+        {
+          src: "./assets/imgs/gallery/2.jpg",
+          alt: "2500 Gallon Vertical Tank",
+          label: "2500 Gallon Vertical Tank",
+          cat: "tanks",
+        },
+        {
+          src: "./assets/imgs/gallery/3.jpg",
+          alt: "GRP Tank",
+          label: "GRP Tank",
+          cat: "tanks",
+        },
+        {
+          src: "./assets/imgs/gallery/4.jpg",
+          alt: "GRP Water Tanks",
+          label: "Water Tanks",
+          cat: "tanks",
+        },
+        {
+          src: "./assets/imgs/gallery/5.jpg",
+          alt: "GRP Sewage Holding Tanks",
+          label: "Sewage Holding Tank",
+          cat: "tanks",
+        },
+        {
+          src: "./assets/imgs/gallery/6.jpg",
+          alt: "GRP bathroom cabin",
+          label: "Bathroom Cabins",
+          cat: "doors",
+        },
+        {
+          src: "./assets/imgs/gallery/7.jpg",
+          alt: "GRP Portable Cabins",
+          label: "Portable Cabins",
+          cat: "doors",
+        },
+        {
+          src: "./assets/imgs/gallery/8.jpg",
+          alt: "GRP bathroom cabin",
+          label: "Bathroom Cabins",
+          cat: "doors",
+        },
+        {
+          src: "./assets/imgs/gallery/9.jpg",
+          alt: "Cage Ladders",
+          label: "Cage Ladders",
+          cat: "infra",
+        },
+        {
+          src: "./assets/imgs/gallery/10.jpg",
+          alt: "Tank Water Cooling Unit",
+          label: "Tank Water Cooling Unit",
+          cat: "infra",
+        },
+        {
+          src: "./assets/imgs/gallery/11.jpg",
+          alt: "Cladding & Décor",
+          label: "Cladding & Décor",
+          cat: "decor",
+        },
+        {
+          src: "./assets/imgs/gallery/12.jpg",
+          alt: "GRP Waterproofing Lining",
+          label: "GRP Waterproofing Lining",
+          cat: "infra",
+        },
+        {
+          src: "./assets/imgs/gallery/13.jpg",
+          alt: "GRP Planters",
+          label: "GRP Planters",
+          cat: "decor",
+        },
+        {
+          src: "./assets/imgs/gallery/14.jpg",
+          alt: "Bathroom Pods",
+          label: "Bathroom Pods",
+          cat: "doors",
+        },
+        {
+          src: "./assets/imgs/gallery/15.jpg",
+          alt: "Portable Toilet Cabin",
+          label: "Portable Toilet Cabin",
+          cat: "doors",
+        },
+        {
+          src: "./assets/imgs/gallery/16.jpg",
+          alt: "GRP Arabic Letters",
+          label: "GRP Arabic Letters",
+          cat: "decor",
+        },
+        {
+          src: "./assets/imgs/gallery/17.jpg",
+          alt: "GRP Translucent Roofing",
+          label: "GRP Translucent Roofing",
+          cat: "decor",
+        },
+      ];
+
+      const PER_PAGE = 6;
+      let currentPage = 1;
+      let activeFilter = "all";
+      let lightboxIndex = 0;
+      let filteredItems = [];
+
+      const masonryGrid = document.getElementById("masonryGrid");
+      const galleryPagination = document.getElementById("galleryPagination");
+      const galleryCount = document.getElementById("galleryCount");
+      const lightbox = document.getElementById("lightbox");
+      const lbImg = document.getElementById("lightboxImg");
+      const lbLabel = document.getElementById("lightboxLabel");
+      const lbCounter = document.getElementById("lightboxCounter");
+
+      function getFiltered() {
+        return activeFilter === "all"
+          ? GALLERY_DATA
+          : GALLERY_DATA.filter((d) => d.cat === activeFilter);
+      }
+
+      function renderGallery() {
+        filteredItems = getFiltered();
+        const totalPages = Math.ceil(filteredItems.length / PER_PAGE);
+        const start = (currentPage - 1) * PER_PAGE;
+        const pageItems = filteredItems.slice(start, start + PER_PAGE);
+
+        masonryGrid.innerHTML = "";
+        pageItems.forEach((item, i) => {
+          const filtIdx = filteredItems.indexOf(item);
+          const div = document.createElement("div");
+          div.className = "masonry-item";
+          div.setAttribute("role", "listitem");
+          div.setAttribute("tabindex", "0");
+          div.setAttribute("aria-label", "View " + item.label);
+          div.innerHTML = `
+            <img src="${item.src}" alt="${item.alt}" class="masonry-img" loading="lazy" />
+            <div class="masonry-overlay">
+              <span class="masonry-label">${item.label}</span>
+            </div>
+            <div class="masonry-expand" aria-hidden="true">⤢</div>
+          `;
+          div.addEventListener("click", () => openLightbox(filtIdx));
+          div.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              openLightbox(filtIdx);
+            }
+          });
+          masonryGrid.appendChild(div);
+          // Staggered reveal
+          setTimeout(() => div.classList.add("reveal", "visible"), i * 80);
+        });
+
+        // Count
+        galleryCount.textContent = `Showing ${start + 1}–${Math.min(start + PER_PAGE, filteredItems.length)} of ${filteredItems.length} images`;
+
+        // Pagination
+        galleryPagination.innerHTML = "";
+        if (totalPages <= 1) return;
+
+        const prevBtn = makePageBtn(
+          "&#8592;",
+          "Previous page",
+          currentPage === 1,
+          () => {
+            currentPage--;
+            renderGallery();
+            scrollToGallery();
+          },
+        );
+        prevBtn.classList.add("page-arrow");
+        galleryPagination.appendChild(prevBtn);
+
+        for (let p = 1; p <= totalPages; p++) {
+          const btn = makePageBtn(p, "Page " + p, false, () => {
+            currentPage = p;
+            renderGallery();
+            scrollToGallery();
+          });
+          if (p === currentPage) {
+            btn.classList.add("active");
+            btn.setAttribute("aria-current", "page");
+          }
+          galleryPagination.appendChild(btn);
+        }
+
+        const nextBtn = makePageBtn(
+          "&#8594;",
+          "Next page",
+          currentPage === totalPages,
+          () => {
+            currentPage++;
+            renderGallery();
+            scrollToGallery();
+          },
+        );
+        nextBtn.classList.add("page-arrow");
+        galleryPagination.appendChild(nextBtn);
+      }
+
+      function makePageBtn(html, label, disabled, onClick) {
+        const btn = document.createElement("button");
+        btn.className = "page-btn";
+        btn.innerHTML = html;
+        btn.setAttribute("aria-label", label);
+        btn.disabled = disabled;
+        if (!disabled) btn.addEventListener("click", onClick);
+        return btn;
+      }
+
+      function scrollToGallery() {
+        document
+          .getElementById("gallery")
+          .scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      // Filter buttons
+      document.getElementById("filterBar").addEventListener("click", (e) => {
+        const btn = e.target.closest(".filter-btn");
+        if (!btn) return;
+        document
+          .querySelectorAll(".filter-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeFilter = btn.dataset.filter;
+        currentPage = 1;
+        renderGallery();
+      });
+
+      // Lightbox
+      function openLightbox(idx) {
+        lightboxIndex = idx;
+        updateLightbox();
+        lightbox.classList.add("open");
+        document.body.style.overflow = "hidden";
+        document.getElementById("lightboxClose").focus();
+      }
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      function updateLightbox() {
+        const item = filteredItems[lightboxIndex];
+        lbImg.src = item.src;
+        lbImg.alt = item.alt;
+        lbLabel.textContent = item.label;
+        lbCounter.textContent =
+          lightboxIndex + 1 + " / " + filteredItems.length;
+      }
+
+      document
+        .getElementById("lightboxClose")
+        .addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.getElementById("lightboxPrev").addEventListener("click", () => {
+        lightboxIndex =
+          (lightboxIndex - 1 + filteredItems.length) % filteredItems.length;
+        updateLightbox();
+      });
+      document.getElementById("lightboxNext").addEventListener("click", () => {
+        lightboxIndex = (lightboxIndex + 1) % filteredItems.length;
+        updateLightbox();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (!lightbox.classList.contains("open")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowLeft") {
+          lightboxIndex =
+            (lightboxIndex - 1 + filteredItems.length) % filteredItems.length;
+          updateLightbox();
+        }
+        if (e.key === "ArrowRight") {
+          lightboxIndex = (lightboxIndex + 1) % filteredItems.length;
+          updateLightbox();
+        }
+      });
+
+      // Touch swipe on lightbox
+      let touchStartX = 0;
+      lightbox.addEventListener(
+        "touchstart",
+        (e) => {
+          touchStartX = e.touches[0].clientX;
+        },
+        { passive: true },
+      );
+      lightbox.addEventListener("touchend", (e) => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 50) {
+          lightboxIndex =
+            dx < 0
+              ? (lightboxIndex + 1) % filteredItems.length
+              : (lightboxIndex - 1 + filteredItems.length) %
+                filteredItems.length;
+          updateLightbox();
+        }
+      });
+
+      // Init gallery
+      renderGallery();
     </script>
   </body>
 </html>
