@@ -120,6 +120,19 @@ All styles are written in plain CSS using custom properties (variables) defined 
 
 ---
 
+## Minification
+
+```bash
+npx html-minifier-terser index.html \
+  --collapse-whitespace \
+  --remove-comments \
+  --minify-css true \
+  --minify-js true \
+  -o index.min.html
+```
+
+---
+
 ## 📄 License
 
 © 2026 Golden Sands of Abu Abali. All rights reserved.
