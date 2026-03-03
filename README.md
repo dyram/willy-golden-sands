@@ -6,7 +6,7 @@ A modern, responsive single-page website for **Golden Sands of Abu Abali**, a le
 
 ## 🌐 Live URL
 
-[https://dyram.github.io/willy-golden-sands/](https://dyram.github.io/willy-golden-sands/)
+[https://www.goldensandsabuali.com](https://www.goldensandsabuali.com)
 
 ---
 
